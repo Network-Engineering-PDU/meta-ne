@@ -1,0 +1,284 @@
+/*
+ * Copyright (C) 2015 Freescale Semiconductor, Inc.
+ * Copyright (C) 2016-2017 Variscite Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+#include "imx7d-tt-common.dtsi"
+
+/ {
+
+};
+
+&ecspi4 {
+	fsl,spi-num-chipselects = <1>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_ecspi4>;
+	cs-gpios = <&gpio3 3 0>;
+	status = "okay";
+
+	cmdisplay: cm-display@0{
+		compatible = "sitronix,st7789v";
+		reg = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&cm_display1>;
+
+		spi-max-frequency = <52000000>;
+		rotate = <180>;
+		width = <240>;
+		height = <320>;
+		fps = <30>;
+		buswidth = <8>;
+		reset-gpios = <&gpio2 28 1>;
+		dc-gpios = <&gpio2 29 0>;
+		debug = <0>;
+	};
+
+};
+
+&i2c2 {
+	clock-frequency = <100000>;
+	pinctrl-names = "default", "gpio";
+	pinctrl-0 = <&pinctrl_i2c2>;
+	pinctrl-1 = <&pinctrl_i2c2_gpio>;
+	scl-gpios = <&gpio4 10 GPIO_ACTIVE_HIGH>;
+	sda-gpios = <&gpio4 11 GPIO_ACTIVE_HIGH>;
+	status = "okay";
+};
+
+&i2c3 {
+	clock-frequency = <100000>;
+	pinctrl-names = "default", "gpio";
+	pinctrl-0 = <&pinctrl_i2c3>;
+	pinctrl-1 = <&pinctrl_i2c3_gpio>;
+	scl-gpios = <&gpio3 25 GPIO_ACTIVE_HIGH>;
+	sda-gpios = <&gpio3 26 GPIO_ACTIVE_HIGH>;
+	status = "okay";
+
+	ft6236: ft6236@38 {
+		compatible = "focaltech,ft6236";
+		reg = <0x38>;
+
+		interrupt-parent = <&gpio2>;
+		interrupts = <14 2>;
+
+		touchscreen-size-x = <240>;
+		touchscreen-size-y = <320>;
+		touchscreen-swapped-x-y = <1>;
+		touchscreen-inverted-x = <1>;
+		touchscreen-inverted-y = <1>;
+	};
+};
+
+&iomuxc {
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&pinctrl_hog_1>;
+	pinctrl-1 = <&pinctrl_hog_1_sleep>;
+
+	imx7d-sdb {
+		pinctrl_hog_1: hoggrp-1 {
+			fsl,pins = <
+				MX7D_PAD_GPIO1_IO14__GPIO1_IO14		0x80000000 /* bt reg on */
+				MX7D_PAD_EPDC_PWR_COM__GPIO2_IO30	0x80000000 /* capacitive touch irq */
+				MX7D_PAD_SD2_RESET_B__GPIO5_IO11	0x59       /* ethphy0 reset */
+				MX7D_PAD_UART2_TX_DATA__GPIO4_IO3	0x59       /* ethphy1 reset */
+				MX7D_PAD_I2C3_SCL__GPIO4_IO12		0x80000000 /* Nordic SWDIO */
+				MX7D_PAD_I2C3_SDA__GPIO4_IO13		0x80000000 /* Nordic SWDCLK */
+				MX7D_PAD_EPDC_DATA13__GPIO2_IO13	0x80000000 /* CM RST */
+				MX7D_PAD_LCD_RESET__GPIO3_IO4		0x80000000 /* CM FCT RST */
+				MX7D_PAD_LCD_VSYNC__GPIO3_IO3		0x80000000 /* DISP CS */
+				MX7D_PAD_LCD_DATA23__GPIO3_IO28		0x80000000 /* TOUCH RST */
+				MX7D_PAD_EPDC_DATA14__GPIO2_IO14	0x80000000 /* TOUCH IRQ */
+				MX7D_PAD_EPDC_DATA10__GPIO2_IO10	0x80000000 /* TRIGGER 1 */
+				MX7D_PAD_EPDC_DATA04__GPIO2_IO4		0x80000000 /* TRIGGER 2 */
+				MX7D_PAD_EPDC_DATA01__GPIO2_IO1		0x80000000 /* HANDLE 1 */
+				MX7D_PAD_EPDC_DATA15__GPIO2_IO15	0x80000000 /* HANDLE 2 */
+				MX7D_PAD_EPDC_DATA03__GPIO2_IO3		0x80000000 /* GPIO_TX31 */
+				MX7D_PAD_EPDC_DATA02__GPIO2_IO2		0x80000000 /* GPIO_RX31 */
+				MX7D_PAD_EPDC_DATA11__GPIO2_IO11	0x80000000 /* GPIO_TX32 */
+				MX7D_PAD_LCD_DATA22__GPIO3_IO27		0x80000000 /* GPIO_RX32 */
+				MX7D_PAD_EPDC_DATA06__GPIO2_IO6		0x80000000 /* GPIO_TX1 */
+				MX7D_PAD_EPDC_DATA07__GPIO2_IO7		0x80000000 /* GPIO_RX1 */
+			>;
+		};
+		
+		pinctrl_hog_1_sleep: hoggrp-1sleep {
+			fsl,pins = <
+				MX7D_PAD_GPIO1_IO14__GPIO1_IO14		0x10  /* bt reg on */
+				MX7D_PAD_EPDC_PWR_COM__GPIO2_IO30	0x10  /* capacitive touch irq */
+				MX7D_PAD_SD2_RESET_B__ECSPI3_RDY	0x10  /* ethphy0 reset */
+				MX7D_PAD_UART2_TX_DATA__I2C2_SDA	0x10  /* ethphy1 reset */
+				MX7D_PAD_EPDC_DATA06__GPIO2_IO6		0x10  /* LED */
+			>;
+		};
+
+		pinctrl_ecspi4: ecspi4grp {
+			fsl,pins = <
+				MX7D_PAD_SD1_CD_B__ECSPI4_MISO		0x2 /* 118 */
+				MX7D_PAD_SD1_WP__ECSPI4_MOSI		0x2 /* 163 */
+				MX7D_PAD_LCD_HSYNC__ECSPI4_SCLK		0x2 /* 44 */
+				MX7D_PAD_SAI2_TX_DATA__GPIO6_IO22	0x80000000 /* Pin header */
+			>;
+		};
+
+		cm_display1: cmdisplay1grp {
+			fsl,pins = <
+				MX7D_PAD_EPDC_BDR0__GPIO2_IO28	0x80000000 /* DISP RST */
+				MX7D_PAD_EPDC_BDR1__GPIO2_IO29	0x80000000 /* DISP DC */
+			>;
+		};
+
+		pinctrl_i2c2: i2c2grp {
+			fsl,pins = <
+				MX7D_PAD_I2C2_SDA__I2C2_SDA     0x4000007f
+				MX7D_PAD_I2C2_SCL__I2C2_SCL     0x4000007f
+			>;
+		};
+
+		pinctrl_i2c2_gpio: i2c2gpiogrp {
+			fsl,pins = <
+				MX7D_PAD_I2C2_SDA__GPIO4_IO11   0x4000007f
+				MX7D_PAD_I2C2_SCL__GPIO4_IO10   0x4000007f
+			>;
+		};
+
+		pinctrl_i2c3: i2c3grp {
+			fsl,pins = <
+				MX7D_PAD_LCD_DATA21__I2C3_SDA	0x4000007f
+				MX7D_PAD_LCD_DATA20__I2C3_SCL	0x4000007f
+			>;
+		};
+
+		pinctrl_i2c3_gpio: i2c3gpiogrp {
+			fsl,pins = <
+				MX7D_PAD_LCD_DATA21__GPIO3_IO26	0x4000007f
+				MX7D_PAD_LCD_DATA20__GPIO3_IO25	0x4000007f
+			>;
+		};
+
+		pinctrl_uart1: uart1grp {
+			fsl,pins = <
+				MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
+				MX7D_PAD_UART1_RX_DATA__UART1_DCE_RX	0x79
+			>;
+		};
+
+		pinctrl_uart1_sleep: uart1sleep_grp {
+			fsl,pins = <
+				MX7D_PAD_UART1_TX_DATA__GPIO4_IO1	0x10
+				MX7D_PAD_UART1_RX_DATA__GPIO4_IO0	0x10
+			>;
+		};
+
+		pinctrl_uart2: uart2grp {
+			fsl,pins = <
+				MX7D_PAD_LCD_CLK__UART2_DCE_RX		0x79
+				MX7D_PAD_LCD_ENABLE__UART2_DCE_TX	0x79
+			>;
+		};
+
+		pinctrl_uart3: uart3grp {
+			fsl,pins = <
+				MX7D_PAD_UART3_TX_DATA__UART3_DCE_TX	0x79
+				MX7D_PAD_UART3_RX_DATA__UART3_DCE_RX	0x79
+				MX7D_PAD_UART3_CTS_B__UART3_DCE_CTS		0x79
+				MX7D_PAD_UART3_RTS_B__UART3_DCE_RTS		0x79
+			>;
+		};
+
+		pinctrl_uart5: uart5grp {
+			fsl,pins = <
+				MX7D_PAD_I2C4_SDA__UART5_DCE_TX		0x79
+				MX7D_PAD_I2C4_SCL__UART5_DCE_RX		0x79
+			>;
+		};
+
+		pinctrl_uart6: uart6grp {
+			fsl,pins = <
+				MX7D_PAD_EPDC_DATA09__UART6_DCE_TX	0x79
+				MX7D_PAD_EPDC_DATA08__UART6_DCE_RX	0x79
+			>;
+		};
+
+		pinctrl_uart7: uart7grp {
+			fsl,pins = <
+				MX7D_PAD_ECSPI2_MOSI__UART7_DCE_TX	0x79
+				MX7D_PAD_ECSPI2_SCLK__UART7_DCE_RX	0x79
+				MX7D_PAD_ECSPI2_SS0__UART7_DCE_CTS	0x79
+				MX7D_PAD_ECSPI2_MISO__UART7_DCE_RTS	0x79
+			>;
+		};
+	};
+};
+
+
+&iomuxc_lpsr {
+	imx7d-sdb {
+		pinctrl_hog_2: hoggrp-2 {
+			fsl,pins = <
+				MX7D_PAD_LPSR_GPIO1_IO05__GPIO1_IO5		0x14
+				MX7D_PAD_LPSR_GPIO1_IO02__GPIO1_IO2		0x80000000 /* SYNC */
+
+			>;
+		};
+	};
+};
+
+
+&uart1 {
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&pinctrl_uart1>;
+	pinctrl-1 = <&pinctrl_uart1_sleep>;
+	assigned-clocks = <&clks IMX7D_UART1_ROOT_SRC>;
+	assigned-clock-parents = <&clks IMX7D_OSC_24M_CLK>;
+	status = "okay";
+};
+
+&uart2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart2>;
+	assigned-clocks = <&clks IMX7D_UART2_ROOT_SRC>;
+	assigned-clock-parents = <&clks IMX7D_OSC_24M_CLK>;
+	rts-gpios = <&gpio2 6 GPIO_ACTIVE_HIGH>;
+	rs485-rts-active-high;
+	rs485-rts-delay = <1 1>;
+	linux,rs485-enabled-at-boot-time;
+	status = "okay";
+};
+
+&uart3 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart3>;
+	assigned-clocks = <&clks IMX7D_UART3_ROOT_SRC>;
+	assigned-clock-parents = <&clks IMX7D_PLL_SYS_MAIN_240M_CLK>;
+	uart-has-rtscts;
+	status = "okay";
+};
+
+&uart5 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart5>;
+	assigned-clocks = <&clks IMX7D_UART5_ROOT_SRC>;
+	assigned-clock-parents = <&clks IMX7D_PLL_SYS_MAIN_240M_CLK>;
+	status = "okay";
+};
+
+&uart6 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart6>;
+	assigned-clocks = <&clks IMX7D_UART6_ROOT_SRC>;
+	assigned-clock-parents = <&clks IMX7D_PLL_SYS_MAIN_240M_CLK>;
+	status = "okay";
+};
+
+&uart7 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart7>;
+	assigned-clocks = <&clks IMX7D_UART7_ROOT_SRC>;
+	assigned-clock-parents = <&clks IMX7D_PLL_SYS_MAIN_240M_CLK>;
+	uart-has-rtscts;
+	status = "okay";
+};
+

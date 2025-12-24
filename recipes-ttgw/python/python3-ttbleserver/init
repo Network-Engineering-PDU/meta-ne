@@ -1,0 +1,25 @@
+#!/bin/sh
+
+NAME=ttbleserver
+
+case "$1" in
+start)
+	echo "Start ble_config_server..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ble_config_server start"
+;;
+
+stop)
+	echo "Stop ble_config_server..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ble_config_server stop"
+;;
+
+restart)
+	echo "Restart ble_config_server..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ble_config_server restart"
+;;
+
+*)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+

@@ -1,0 +1,39 @@
+#!/bin/sh
+
+PID_FILE="/var/run/cmdisplay.pid"
+LOG_FILE="/var/log/cmdisplay.log"
+
+DAEMON="/usr/bin/cmdisplay"
+
+test -f $DAEMON || exit 0
+
+case "$1" in
+start)
+    if [ -f $PID_FILE ]; then
+        echo "CM display already running"
+    else
+        echo "Start CM display..."
+        start-stop-daemon --start --make-pidfile --pidfile $PID_FILE --background \
+                --startas /bin/bash -- -c "exec stdbuf -oL -eL $DAEMON > $LOG_FILE 2>&1"
+    fi
+;;
+
+stop)
+    if [ -f $PID_FILE ]; then
+                echo "Stop CM display..."
+                start-stop-daemon --stop --pidfile=$PID_FILE --retry 10 --signal SIGINT
+                rm $PID_FILE
+        else
+                echo "CM display not running"
+        fi
+;;
+
+restart)
+    $0 stop
+    $0 start
+;;
+
+*)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac

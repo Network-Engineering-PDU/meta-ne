@@ -1,0 +1,139 @@
+#! /bin/sh
+# /etc/init.d/snmpd: start snmp daemon.
+
+. /etc/init.d/functions
+
+# Defaults
+export MIBDIRS=/usr/share/snmp/mibs
+SNMPDRUN=yes
+DISABLEOPTS='-I -usmConf
+	-I -iquery
+	-I -snmpEngine
+	-I -snmpMPDStats
+	-I -usmStats
+	-I -usmUser
+	-I -sysORTable
+	-I -snmp_mib
+	-I -vacm_vars
+	-I -setSerialNo
+	-I -at
+	-I -ip
+	-I -tcp
+	-I -icmp
+	-I -udp
+	-I -ipv6
+	-I -disk_hw
+	-I -proc
+	-I -versioninfo
+	-I -loadave
+	-I -extend
+	-I -errormib
+	-I -file
+	-I -dlmod
+	-I -proxy
+	-I -logmatch
+	-I -memory
+	-I -vmstat
+	-I -vacm_context
+	-I -var_route
+	-I -tcpTable
+	-I -udpTable
+	-I -ip_scalars
+	-I -ifTable
+	-I -ifTable
+	-I -ifXTable
+	-I -ifXTable
+	-I -ipAddressTable
+	-I -ipAddressTable
+	-I -ipAddressPrefixTable
+	-I -ipAddressPrefixTable
+	-I -ipDefaultRouterTable
+	-I -ipDefaultRouterTable
+	-I -inetNetToMediaTable
+	-I -inetNetToMediaTable
+	-I -ipSystemStatsTable
+	-I -ipSystemStatsTable
+	-I -ipv6ScopeZoneIndexTable
+	-I -ipv6ScopeZoneIndexTable
+	-I -ipIfStatsTable
+	-I -ipIfStatsTable
+	-I -ipCidrRouteTable
+	-I -ipCidrRouteTable
+	-I -inetCidrRouteTable
+	-I -inetCidrRouteTable
+	-I -tcpConnectionTable
+	-I -tcpConnectionTable
+	-I -tcpListenerTable
+	-I -tcpListenerTable
+	-I -udpEndpointTable
+	-I -udpEndpointTable
+	-I -hw_fsys
+	-I -hw_mem
+	-I -cpu
+	-I -cpu_linux
+	-I -interface'
+
+CONFFILE=/home/root/snmp/snmpd.conf
+CONFOPTS=''
+if [ -r $CONFFILE ]; then
+	CONFOPTS="-C -c $CONFFILE"
+fi
+
+PIDFILE=/var/run/snmpd.pid
+SPIDFILE=/var/run/snmptrapd.pid
+SNMPDOPTS="-Lsd -Lf /dev/null -p $PIDFILE $CONFOPTS $DISABLEOPTS"
+TRAPDRUN=no
+TRAPDOPTS='-Lsd -p /var/run/snmptrapd.pid'
+
+# Reads config file if exists (will override defaults above)
+[ -r /etc/default/snmpd ] && . /etc/default/snmpd
+
+[ "$SNMPDRUN" = "yes" ] && { test -x /usr/sbin/snmpd || exit 0; }
+[ "$TRAPDRUN" = "yes" ] && { test -x /usr/sbin/snmptrapd || exit 0; }
+
+case "$1" in
+  start)
+    echo -n "Starting network management services:"
+    if [ "$SNMPDRUN" = "yes" -a -f /etc/snmp/snmpd.conf -a ! -f "$PIDFILE" ]; then
+	start-stop-daemon -o --start --quiet --name snmpd --pidfile "$PIDFILE" \
+		--exec /usr/sbin/snmpd -- $SNMPDOPTS
+	echo -n " snmpd"
+    fi
+    if [ "$TRAPDRUN" = "yes" -a -f /etc/snmp/snmptrapd.conf -a ! -f "$SPIDFILE" ]; then
+	start-stop-daemon -o --start --quiet --name snmptrapd  --pidfile "$SPIDFILE" \
+		 --exec /usr/sbin/snmptrapd -- $TRAPDOPTS
+	echo -n " snmptrapd"
+    fi
+    echo "."
+
+    test ! -x /sbin/restorecon || /sbin/restorecon -FR /var/lib/net-snmp
+    ;;
+  stop)
+    echo -n "Stopping network management services:"
+    if [ -f  "$PIDFILE" ] ; then
+	start-stop-daemon -o --stop  --quiet --pidfile $PIDFILE --name snmpd
+    fi
+    echo -n " snmpd"
+    if [ -f "$SPIDFILE" ] ; then
+	start-stop-daemon -o --stop  --quiet --pidfile $SPIDFILE --name snmptrapd
+	rm -rf $SPIDFILE
+    fi
+    echo -n " snmptrapd"
+    echo "."
+    ;;
+  status)
+    status /usr/sbin/snmpd;
+    exit $?
+    ;;
+  restart|reload|force-reload)
+    $0 stop
+    # Allow the daemons time to exit completely.
+    sleep 2
+    $0 start
+    ;;
+  *)
+    echo "Usage: /etc/init.d/snmpd {start|stop|status|restart|reload|force-reload}"
+    exit 1
+esac
+
+exit 0

@@ -1,0 +1,13 @@
+SECRET_KEY=a9svk7h!+uk@uy8-l9u0v!^hjf#yz_%nt09g(9s7c&==j3#
+DEBUG=True
+# Superuser
+SUPERUSER_USERNAME=admin
+SUPERUSER_PASSWORD=admin
+SUPERUSER_EMAIL=admin@example.com
+SUPERUSER_FIRST_NAME=Admin
+SUPERUSER_LAST_NAME=Admin
+# Base URL
+BASE_URL_DJANGO=http://127.0.0.1:8000
+BASE_URL_PDU=http://127.0.0.1:8001
+# RW dir
+BASE_RW_DIR=/home/root/.ne

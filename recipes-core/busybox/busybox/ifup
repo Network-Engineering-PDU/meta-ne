@@ -1,0 +1,10 @@
+#!/bin/bash
+
+IF_FILE="/home/root/network/interfaces"
+
+
+if [ -f $IF_FILE ]; then
+	busybox.nosuid ifup -i $IF_FILE "$@"
+else
+	busybox.nosuid ifup "$@"
+fi

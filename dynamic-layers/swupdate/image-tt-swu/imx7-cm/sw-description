@@ -1,0 +1,27 @@
+software =
+{
+	version = "0.1.0";
+
+	imx7-var-som = {
+		hardware-compatibility: [ "1.0" ];
+
+		files: (
+			{
+				filename = "image-tt-swupdate-imx7-cm.tar.gz";
+				type = "archive";
+				compressed = "zlib";
+				device = "/dev/update";
+				filesystem = "ext4";
+				preserve-attributes = true;
+				path = "/";
+			}
+		);
+
+		scripts: (
+			{
+				filename = "update.sh";
+				type = "shellscript";
+			}
+		);
+	};
+}

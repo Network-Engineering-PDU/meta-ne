@@ -1,0 +1,26 @@
+diff --git a/configs/mx7dvar_som_defconfig b/configs/mx7dvar_som_defconfig
+index 717d1efd3b..660cd883d5 100644
+--- a/configs/mx7dvar_som_defconfig
++++ b/configs/mx7dvar_som_defconfig
+@@ -24,7 +24,7 @@ CONFIG_CMD_BOOTZ=y
+ # CONFIG_CMD_IMI is not set
+ # CONFIG_CMD_XIMG is not set
+ # CONFIG_CMD_EXPORTENV is not set
+-# CONFIG_CMD_IMPORTENV is not set
++CONFIG_CMD_IMPORTENV=y
+ CONFIG_CMD_MEMTEST=y
+ CONFIG_CMD_DFU=y
+ CONFIG_CMD_GPIO=y
+diff --git a/configs/mx7dvar_som_no_spl_defconfig b/configs/mx7dvar_som_no_spl_defconfig
+index 8c57d3965e..2aefd11c13 100644
+--- a/configs/mx7dvar_som_no_spl_defconfig
++++ b/configs/mx7dvar_som_no_spl_defconfig
+@@ -16,7 +16,7 @@ CONFIG_CMD_BOOTZ=y
+ # CONFIG_CMD_IMI is not set
+ # CONFIG_CMD_XIMG is not set
+ # CONFIG_CMD_EXPORTENV is not set
+-# CONFIG_CMD_IMPORTENV is not set
++CONFIG_CMD_IMPORTENV=y
+ CONFIG_CMD_MEMTEST=y
+ CONFIG_CMD_DFU=y
+ CONFIG_CMD_GPIO=y

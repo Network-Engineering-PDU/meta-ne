@@ -1,0 +1,15 @@
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index b513d67a9a4c..8c5a2cb8adfe 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -728,6 +728,14 @@ dtb-$(CONFIG_SOC_IMX7D) += \
+ 	imx7d-var-som-nand.dtb \
+ 	imx7d-var-som-emmc-m4.dtb \
+ 	imx7d-var-som-nand-m4.dtb \
++	imx7d-cm-emmc.dtb \
++	imx7d-cm-nand.dtb \
++	imx7d-cm-emmc-m4.dtb \
++	imx7d-cm-nand-m4.dtb \
+ 	imx7s-colibri-eval-v3.dtb \
+ 	imx7s-mba7.dtb \
+ 	imx7s-warp.dtb

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+NAME=ttgateway
+
+case "$1" in
+start)
+	echo "Start ttdaemon..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ttdaemon start"
+;;
+
+stop)
+	echo "Stop ttdaemon..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ttdaemon stop"
+;;
+restart)
+	echo "Restart ttdaemon..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ttdaemon restart"
+;;
+
+*)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+

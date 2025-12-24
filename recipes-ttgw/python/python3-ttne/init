@@ -1,0 +1,24 @@
+#!/bin/sh
+
+NAME=ttne
+
+case "$1" in
+start)
+	echo "Start ttnedaemon..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ttnedaemon start"
+;;
+
+stop)
+	echo "Stop ttnedaemon..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ttnedaemon stop"
+;;
+restart)
+	echo "Restart ttnedaemon..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ttnedaemon restart"
+;;
+
+*)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
