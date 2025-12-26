@@ -1,11 +1,11 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Tychetools SNMP utilities"
-HOMEPAGE = "https://bitbucket.org/tychetools/snmp-client/"
+SUMMARY = "Network-Engineering-PDU SNMP utilities"
+HOMEPAGE = "https://github.com/Network-Engineering-PDU/snmp-client/"
 LICENSE = "CLOSED"
 
-SRCBRANCH = "master"
-SRCREV = "302de7bce5b1674788f7b9113ca32f3df3309afa"
-SRC_URI = "git://bitbucket.org/tychetools/snmp-client.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCBRANCH = "main"
+SRCREV = "a8fefd4a8d0d6f10f6d3a263905be55bbeac98e9"
+SRC_URI = "git://github.com/Network-Engineering-PDU/snmp-client.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
 
