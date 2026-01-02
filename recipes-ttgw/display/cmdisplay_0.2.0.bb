@@ -1,11 +1,11 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Tychetools NE display for PDUs"
-HOMEPAGE = "https://bitbucket.org/tychetools/ttne-display/"
+SUMMARY = "Network-Engineering-PDU NE display for PDUs"
+HOMEPAGE = "https://github.com/Network-Engineering-PDU/ttne-display/"
 LICENSE = "CLOSED"
 
-SRCBRANCH = "master"
-SRCREV = "c9fd9167fb15a7f021263c8756cadb22fa2410ec"
-SRC_URI = "git://bitbucket.org/tychetools/ttne-display.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCBRANCH = "main"
+SRCREV = "1228178960be002234762c4f544612a0c1aa5cd6"
+SRC_URI = "git://github.com/Network-Engineering-PDU/ttne-display.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += "\
     file://findcjson.patch\
