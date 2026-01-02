@@ -1,5 +1,5 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Network-Engineering-PDU diagnosis application"
+SUMMARY = "Network-Engineering-PDU Diagnosis Application"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "devel"
