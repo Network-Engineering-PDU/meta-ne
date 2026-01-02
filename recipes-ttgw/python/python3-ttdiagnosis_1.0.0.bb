@@ -1,10 +1,10 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Tychetools diagnosis application"
+SUMMARY = "Network-Engineering-PDU diagnosis application"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "devel"
-SRCREV = "28e5e8b649c3888737a687d1e1daf1ace2276f07"
-SRC_URI = "git://bitbucket.org/tychetools/diagnosis.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCREV = "5773a4fb267deb86492be19b295e3a7868cb0679"
+SRC_URI = "git://github.com/Network-Engineering-PDU/diagnosis.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
 
