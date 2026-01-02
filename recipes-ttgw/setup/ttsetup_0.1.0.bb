@@ -1,13 +1,13 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Tychetools heimdall configuration script"
+SUMMARY = "Network-Engineering-PDU heimdall configuration script"
 LICENSE = "CLOSED"
 
 RDEPENDS_${PN} += "bash"
 inherit update-rc.d
 
-SRCBRANCH = "master"
-SRCREV = "7661a5dca6562b96592d3559b963f1917c7d5584"
-SRC_URI = "git://bitbucket.org/tychetools/heimdall.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCBRANCH = "main"
+SRCREV = "901ba2cdb7e25b5c9756e0f56f8490557fdd9c3b"
+SRC_URI = "git://github.com/Network-Engineering-PDU/heimdall.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += " \
 	file://autottsetup.sh \
