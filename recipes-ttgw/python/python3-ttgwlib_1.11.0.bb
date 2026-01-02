@@ -1,11 +1,11 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Tychetools gateway library"
-HOMEPAGE = "https://bitbucket.org/tychetools/gw-library/"
+SUMMARY = "Network-Engineering-PDU gateway library"
+HOMEPAGE = "https://github.com/Network-Engineering-PDU/gw-library/"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "devel"
-SRCREV = "2c442d9d48bb09ee87672b471b5b03265aa2aa19"
-SRC_URI = "git://bitbucket.org/tychetools/gw-library.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCREV = "68f3129cb92639e3ab7d523079dcbb358f5e8a8b"
+SRC_URI = "git://github.com/Network-Engineering-PDU/gw-library.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
 
