@@ -1,11 +1,11 @@
 # -*- mode: Conf; -*-
 SUMMARY = "NE Django web server for PDUs"
-HOMEPAGE = "https://bitbucket.org/tychetools/ne/"
+HOMEPAGE = "https://github.com/Network-Engineering-PDU/ne/"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "main"
-SRCREV = "1fc64c0fc972e818964a30847d2f0ae640fcb4f4"
-SRC_URI = "git://bitbucket.org/tychetools/ne.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCREV = "09bfadc841994e51a2524611c6681adc293e6ac5"
+SRC_URI = "git://github.com/Network-Engineering-PDU/ne.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += " \
 	file://env \
