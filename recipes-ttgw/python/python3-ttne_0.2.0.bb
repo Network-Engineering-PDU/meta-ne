@@ -1,11 +1,11 @@
 # -*- mode: Conf; -*-
-SUMMARY = "TycheTools NE API"
-HOMEPAGE = "https://bitbucket.org/tychetools/ne-fw-api/"
+SUMMARY = "Network-Engineering-PDU NE API"
+HOMEPAGE = "https://github.com/Network-Engineering-PDU/ne-fw-api/"
 LICENSE = "CLOSED"
 
-SRCBRANCH = "master"
-SRCREV = "d88a802c11cadacd26d2fa890bbe2d2c27f107c7"
-SRC_URI = "git://bitbucket.org/tychetools/ne-fw-api.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCBRANCH = "main"
+SRCREV = "577f3d3e0a2a710fac3da4c7f34297203e46a27a"
+SRC_URI = "git://github.com/Network-Engineering-PDU/ne-fw-api.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += " \
 	file://init \
