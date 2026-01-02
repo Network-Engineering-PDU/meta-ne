@@ -1,12 +1,12 @@
 # -*- mode: Conf; -*-
-SUMMARY = "TycheTools autorun"
+SUMMARY = "Network-Engineering-PDU autorun"
 LICENSE = "CLOSED"
 
 RDEPENDS_${PN} += "bash"
 
-SRCBRANCH = "master"
-SRCREV = "2722224f96ac6036cb5525509be6376cd14a7285"
-SRC_URI = "git://bitbucket.org/tychetools/usb_autorun.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCBRANCH = "main"
+SRCREV = "f0c256358f7bfe979d2b46e6619a44187de6d5b7"
+SRC_URI = "git://github.com/Network-Engineering-PDU/usb_autorun.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
 

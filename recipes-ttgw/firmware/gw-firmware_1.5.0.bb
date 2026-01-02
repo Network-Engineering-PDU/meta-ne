@@ -1,5 +1,5 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Tychetools gateway firmware binaries"
+SUMMARY = "Network-Engineering-PDU gateway firmware binaries"
 HOMEPAGE = "https://github.com/Network-Engineering-PDU/gw-firmware/"
 LICENSE = "CLOSED"
 
