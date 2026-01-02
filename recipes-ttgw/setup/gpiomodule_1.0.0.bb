@@ -7,7 +7,7 @@ inherit autotools pkgconfig update-rc.d
 
 SRCBRANCH = "main"
 SRCREV = "ae25493ddac4df6e1caeeb20bb704153a0ad1317"
-SRC_URI = "git://github.com/Network-Engineering-PDU/gpio_module.git;protocol=?https;branch=${SRCBRANCH}"
+SRC_URI = "git://github.com/Network-Engineering-PDU/gpio_module.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
 
