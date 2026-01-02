@@ -1,13 +1,13 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Tychetools gpio module"
+SUMMARY = "Network-Engineering-PDU gpio module"
 LICENSE = "CLOSED"
 
 RDEPENDS_${PN} += "bash"
 inherit autotools pkgconfig update-rc.d
 
-SRCBRANCH = "master"
-SRCREV = "1ba067fe830e39007ac75ad81afc6eb395fe1d15"
-SRC_URI = "git://bitbucket.org/tychetools/gpio_module.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCBRANCH = "main"
+SRCREV = "ae25493ddac4df6e1caeeb20bb704153a0ad1317"
+SRC_URI = "git://github.com/Network-Engineering-PDU/gpio_module.git;protocol=?https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
 
