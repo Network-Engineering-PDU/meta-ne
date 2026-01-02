@@ -13,20 +13,41 @@ index 855bbfb..00b2e33 100644
  set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 diff --git a/cmake/FindcJSON.cmake b/cmake/FindcJSON.cmake
 new file mode 100644
-index 0000000..2f224fd
+index 0000000..c13d123
 --- /dev/null
 +++ b/cmake/FindcJSON.cmake
-@@ -0,0 +1,13 @@
+@@ -0,0 +1,33 @@
++# Yocto-compatible FindcJSON module
++# Dynamically locates cJSON library and headers from Yocto sysroot
 +
-+set(CJSON_ROOT_DIR
-+    "/home/user/storage/build/tmp/work/cortexa7t2hf-neon-fslc-linux-gnueabi/cmdisplay/0.2.0-r0/recipe-sysroot"
++message(STATUS ">>> Searching for cJSON in sysroot: ${CMAKE_SYSROOT}")
++
++# Find include directory
++find_path(CJSON_INCLUDE_DIR cjson/cJSON.h
++    PATHS ${CMAKE_SYSROOT}/usr/include
 +)
 +
-+set(CJSON_INCLUDE_DIR
-+    ${CJSON_ROOT_DIR}/usr/include
++# Find library
++find_library(CJSON_LIBRARIES cjson
++    PATHS ${CMAKE_SYSROOT}/usr/lib ${CMAKE_SYSROOT}/usr/lib64
 +)
 +
-+set(CJSON_LIBRARIES
-+    ${CJSON_ROOT_DIR}/usr/lib/libcjson.so
-+)
++# Handle results
++include(FindPackageHandleStandardArgs)
++find_package_handle_standard_args(cJSON DEFAULT_MSG CJSON_LIBRARIES CJSON_INCLUDE_DIR)
 +
++mark_as_advanced(CJSON_LIBRARIES CJSON_INCLUDE_DIR)
++
++if (CJSON_LIBRARIES AND CJSON_INCLUDE_DIR)
++    message(STATUS "✅ Found cJSON:")
++    message(STATUS "   Include dir: ${CJSON_INCLUDE_DIR}")
++    message(STATUS "   Library: ${CJSON_LIBRARIES}")
++else()
++    message(WARNING "⚠️  cJSON not found in ${CMAKE_SYSROOT}/usr/lib or /usr/include.")
++    message(WARNING "   Please ensure the cjson package is listed in DEPENDS of your recipe.")
++endif()
++
++# Export variables for use
++set(CJSON_FOUND TRUE)
++
+
