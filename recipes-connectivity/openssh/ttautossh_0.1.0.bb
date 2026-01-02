@@ -1,14 +1,14 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Tychetools autossh tunnel service"
+SUMMARY = "Network-Engineering-PDU autossh tunnel service"
 LICENSE = "CLOSED"
 
 inherit update-rc.d
 
 RDEPENDS_${PN} += "bash"
 
-SRCBRANCH = "master"
-SRCREV = "9227f5c9eb4df6668936fffbf84ad6badab2155e"
-SRC_URI = "git://bitbucket.org/tychetools/heimdall.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCBRANCH = "main"
+SRCREV = "901ba2cdb7e25b5c9756e0f56f8490557fdd9c3b"
+SRC_URI = "git://github.com/Network-Engineering-PDU/heimdall.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
 
