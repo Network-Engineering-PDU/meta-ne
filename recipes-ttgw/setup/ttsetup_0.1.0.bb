@@ -16,6 +16,7 @@ SRC_URI += " \
 S = "${WORKDIR}/git/ttsetup"
 
 do_compile() {
+	chmod +x ${S}/archive_ttsetup.sh
 	./archive_ttsetup.sh
 }
 
