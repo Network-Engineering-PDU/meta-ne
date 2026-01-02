@@ -1,11 +1,11 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Tychetools Bluetooth configuration server application"
-HOMEPAGE = "https://bitbucket.org/tychetools/ble_config_server/"
+SUMMARY = "Network-Engineering-PDU Bluetooth configuration server application"
+HOMEPAGE = "https://github.com/Network-Engineering-PDU/ble_config_server/"
 LICENSE = "CLOSED"
 
-SRCBRANCH = "master"
-SRCREV = "4c0993bcbc92474f428e098a23764bb9a30209b8"
-SRC_URI = "git://bitbucket.org/tychetools/ble_config_server.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCBRANCH = "main"
+SRCREV = "db625fee8cc2ebbc897260862a5a6a3b4d298253"
+SRC_URI = "git://github.com/Network-Engineering-PDU/ble_config_server.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += " \
 	file://init \
