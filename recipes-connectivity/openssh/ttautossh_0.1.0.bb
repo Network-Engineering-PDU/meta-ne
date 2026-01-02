@@ -7,7 +7,7 @@ inherit update-rc.d
 RDEPENDS_${PN} += "bash"
 
 SRCBRANCH = "main"
-SRCREV = "901ba2cdb7e25b5c9756e0f56f8490557fdd9c3b"
+SRCREV = "19a34a2c027febe0342c8e01d07c9dd4a9eaaf15"
 SRC_URI = "git://github.com/Network-Engineering-PDU/heimdall.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
