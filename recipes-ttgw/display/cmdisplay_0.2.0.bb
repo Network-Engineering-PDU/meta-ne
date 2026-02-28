@@ -3,8 +3,8 @@ SUMMARY = "Network-Engineering-PDU NE display for PDUs"
 HOMEPAGE = "https://github.com/Network-Engineering-PDU/ttne-display/"
 LICENSE = "CLOSED"
 
-SRCBRANCH = "screen-settings-v4"
-SRCREV = "01c59ab87420d8f5c425c9ad67c38e978db96196"
+SRCBRANCH = "main"
+SRCREV = "dc256a0f3590ec78413d3c392f58dcbbd9c62acc"
 SRC_URI = "git://github.com/Network-Engineering-PDU/ttne-display.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += "\
