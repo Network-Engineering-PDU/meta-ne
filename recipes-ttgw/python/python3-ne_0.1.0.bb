@@ -4,7 +4,7 @@ HOMEPAGE = "https://github.com/Network-Engineering-PDU/ne/"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "main"
-SRCREV = "7b8930a66d03b40b4a5a7e2cb4e3c9ca8b156be2"
+SRCREV = "76c46268b70fcb98f80d3d5466805351e544f311"
 SRC_URI = "git://github.com/Network-Engineering-PDU/ne.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += " \
