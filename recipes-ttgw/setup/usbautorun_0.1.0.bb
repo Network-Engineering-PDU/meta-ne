@@ -17,6 +17,7 @@ SRC_URI += "\
 FILES_${PN} += " \
     ${bindir}/usb_autorun.sh \
     ${bindir}/usb_mount.sh \
+    ${bindir}/firmware_update_wrapper.sh \
     ${sysconfigdir}/udev/rules.d/99-usb-autorun.rules \
     ${datadir}/usb_autorun/public.pem \
 "
@@ -28,6 +29,7 @@ do_install_append() {
 
     install -m 755 ${S}/usb_autorun.sh ${D}${bindir}/usb_autorun.sh
     install -m 755 ${S}/usb_mount.sh ${D}${bindir}/usb_mount.sh
+    install -m 755 ${S}/firmware_update_wrapper.sh ${D}${bindir}/firmware_update_wrapper.sh
     install -m 644 ${S}/99-usb-autorun.rules ${D}${sysconfdir}/udev/rules.d/99-usb-autorun.rules
     install -m 755 ${WORKDIR}/public.pem ${D}${datadir}/usb_autorun/public.pem
 }
