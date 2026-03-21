@@ -4,7 +4,7 @@ HOMEPAGE = "https://github.com/Network-Engineering-PDU/ne-fw-api/"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "main"
-SRCREV = "25954885f2b7a74ae3c23266fb5d3fa4bb7dd61a"
+SRCREV = "2c5dd597a3ff81cf0c8b71d1b17badb05c5082e3"
 SRC_URI = "git://github.com/Network-Engineering-PDU/ne-fw-api.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += " \
