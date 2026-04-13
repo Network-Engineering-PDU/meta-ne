@@ -4,7 +4,7 @@ HOMEPAGE = "https://github.com/Network-Engineering-PDU/ttne-display/"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "main"
-SRCREV = "3c866a856ead1f71e34d1faffddf6c5ca8291add"
+SRCREV = "b2ee9d492dde4c3ead223f52736a30a19c8dc697"
 SRC_URI = "git://github.com/Network-Engineering-PDU/ttne-display.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += "\
