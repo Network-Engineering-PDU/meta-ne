@@ -4,7 +4,7 @@ HOMEPAGE = "https://github.com/Network-Engineering-PDU/ble_config_server/"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "main"
-SRCREV = "db625fee8cc2ebbc897260862a5a6a3b4d298253"
+SRCREV = "a42761aca45beabf73224c6d21250bec2b1a294c"
 SRC_URI = "git://github.com/Network-Engineering-PDU/ble_config_server.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += " \
