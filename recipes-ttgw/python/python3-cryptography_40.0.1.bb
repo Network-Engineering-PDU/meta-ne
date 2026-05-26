@@ -2,8 +2,8 @@ DESCRIPTION = "High level compatibility layer for multiple asynchronous event lo
 HOMEPAGE = "https://pypi.org/project/anyio/"
 LICENSE = "BSD"
 
-# Bypass license checking for pre-built wheels - file not in wheel at expected path
-NO_GENERIC_LICENSE["BSD"] = "LICENSE.txt"
+# Empty LIC_FILES_CHKSUM for pre-built wheels - license not in expected path
+LIC_FILES_CHKSUM = ""
 
 WHL_FILE = "cryptography-40.0.1-cp38-cp38-linux_armv7l.whl"
 GIT_NAME = "AhmedElghaly"
