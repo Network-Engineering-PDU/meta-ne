@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://site-packages/pyOpenSSL-23.1.1.dist-info/LICENSE;md5=
 DEPENDS += "openssl ${PYTHON_PN}-cryptography"
 
 SRC_URI += " \
-	https://files.pythonhosted.org/packages/b6/3b/fa9b3c4dfe6121fdf5fce2a375164cf6fc1ccc0b145bcc134e210052fbb0/pyOpenSSL-23.1.1-py3-none-any.whl\
+	https://files.pythonhosted.org/packages/b7/6d/d7377332703ffd8821878794aca4fb54637da654bf3e467ffb32109c2147/pyOpenSSL-23.1.1-py3-none-any.whl\
 "
 
 SRC_URI[sha256sum] = "9e0c526404a210df9d2b18cd33364beadb0dc858a739b885677bc65e105d4a4c"
