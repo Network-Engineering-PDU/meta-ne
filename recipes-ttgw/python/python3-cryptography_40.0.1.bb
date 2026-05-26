@@ -1,14 +1,13 @@
 DESCRIPTION = "Cryptography library with OpenSSL bindings for ARMv7l"
 HOMEPAGE = "https://github.com/Network-Engineering-PDU/cryptography-40.0.1"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://site-packages/cryptography-40.0.1.dist-info/LICENSE.BSD;md5=5ae30ba4123bc4f2fa49aa0b0dce887b"
+LIC_FILES_CHKSUM = "file://site-packages/cryptography-40.0.1.dist-info/LICENSE;md5=bf405a8056a6647e7d077b0e7bc36aba"
 
 WHL_FILE = "cryptography-40.0.1-cp38-cp38-linux_armv7l.whl"
-GIT_REPO = "Network-Engineering-PDU/cryptography-40.0.1"
 
-SRC_URI = "https://github.com/${GIT_REPO}/releases/download/v40.0.1/${WHL_FILE};unpack=0"
+SRC_URI = "https://github.com/Network-Engineering-PDU/cryptography-40.0.1/raw/main/${WHL_FILE};unpack=0"
 
-SRC_URI[sha256sum] = "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+SRC_URI[sha256sum] = "0514c1ea7730ae9fbaf35f2ec57c7e69d6d500e139faa6390e16821d08767688"
 
 BBCLASSEXTEND = "native nativesdk"
 inherit python3-dir
