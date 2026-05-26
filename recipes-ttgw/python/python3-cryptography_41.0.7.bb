@@ -2,7 +2,7 @@ SUMMARY = "Provides cryptographic recipes and primitives"
 DESCRIPTION = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
 HOMEPAGE = "https://github.com/pyca/cryptography"
 LICENSE = "Apache-2.0 | BSD"
-LIC_FILES_CHKSUM = "file://site-packages/cryptography-41.0.7.dist-info/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
+LIC_FILES_CHKSUM = "file://site-packages/cryptography-41.0.7.dist-info/LICENSE;md5=8c3617db4fb6fae01f1d253ab91511e4"
 
 DEPENDS += "openssl"
 RDEPENDS:${PN} = "python3-cffi openssl"
