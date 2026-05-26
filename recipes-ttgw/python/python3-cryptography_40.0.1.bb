@@ -1,7 +1,6 @@
 DESCRIPTION = "High level compatibility layer for multiple asynchronous event loop implementations"
 HOMEPAGE = "https://pypi.org/project/anyio/"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=bf405a8056a6647e7d077b0e7bc36aba"
 
 WHL_FILE = "cryptography-40.0.1-cp38-cp38-linux_armv7l.whl"
 GIT_NAME = "AhmedElghaly"
