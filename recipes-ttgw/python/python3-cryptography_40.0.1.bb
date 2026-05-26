@@ -8,6 +8,8 @@ GIT_REPO = "Network-Engineering-PDU/cryptography-40.0.1"
 
 SRC_URI = "https://github.com/${GIT_REPO}/releases/download/v40.0.1/${WHL_FILE};unpack=0"
 
+SRC_URI[sha256sum] = "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+
 BBCLASSEXTEND = "native nativesdk"
 inherit python3-dir
 
