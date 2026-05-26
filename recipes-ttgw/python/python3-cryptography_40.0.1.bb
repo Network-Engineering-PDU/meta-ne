@@ -2,27 +2,41 @@ SUMMARY = "Provides cryptographic recipes and primitives"
 DESCRIPTION = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
 HOMEPAGE = "https://github.com/pyca/cryptography"
 LICENSE = "Apache-2.0 | BSD"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=8c7abffc8fbedfa67638ba3fe924b6ca"
+LIC_FILES_CHKSUM = "file://site-packages/cryptography-40.0.1.dist-info/LICENSE;md5=bf405a8056a6647e7d077b0e7bc36aba"
 
-SRC_URI = "https://files.pythonhosted.org/packages/15/d9/c679e9eda76bfc0d60c9d7a4084ca52d0631d9f24ef04f818012f6d1282e/cryptography-40.0.1.tar.gz"
-SRC_URI[sha256sum] = "2803f2f8b1e95f614419926c7e6f55d828afc614ca5ed61543877ae668cc3472"
+DEPENDS += "openssl"
+RDEPENDS:${PN} = "python3-cffi openssl"
 
-DEPENDS = "openssl libffi python3-native python3-cffi-native"
-RDEPENDS:${PN} = "openssl python3-cffi libffi"
+WHL_FILE = "cryptography-40.0.1-cp38-cp38-linux_armv7l.whl"
 
-S = "${WORKDIR}/cryptography-40.0.1"
-
-inherit setuptools3
+SRC_URI = "https://github.com/Network-Engineering-PDU/cryptography-40.0.1/raw/main/${WHL_FILE};unpack=0"
+SRC_URI[sha256sum] = "0514c1ea7730ae9fbaf35f2ec57c7e69d6d500e139faa6390e16821d08767688"
 
 BBCLASSEXTEND = "native nativesdk"
+inherit python3-dir
+
 PROVIDES += "python3-cryptography"
 
-# Ensure OpenSSL headers are available for cffi to generate complete bindings
-export LDFLAGS = "-L${STAGING_LIBDIR}"
-export CFLAGS = "-I${STAGING_INCDIR}"
-export CPPFLAGS = "-I${STAGING_INCDIR}"
-export PKG_CONFIG_PATH = "${STAGING_LIBDIR}/pkgconfig"
+do_unpack[depends] += "unzip-native:do_populate_sysroot"
 
-FILES:${PN} += "\
+S = "${WORKDIR}"
+
+FILES_${PN} += "\
 	${libdir}/${PYTHON_DIR}/site-packages/* \
 "
+
+do_unpack_append(){
+    bb.build.exec_func('unpack_whl', d)
+}
+
+unpack_whl() {
+    rm -rf ${S}/site-packages
+    mkdir ${S}/site-packages
+    ${bindir}/env unzip ${S}/${WHL_FILE} -d ${S}/site-packages
+}
+
+do_install() {
+    install -d ${D}${libdir}/${PYTHON_DIR}/site-packages
+
+    cp -r ${S}/site-packages/* ${D}${libdir}/${PYTHON_DIR}/site-packages/
+}
