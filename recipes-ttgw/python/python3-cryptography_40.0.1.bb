@@ -8,8 +8,6 @@ GIT_REPO = "Network-Engineering-PDU/cryptography-40.0.1"
 
 SRC_URI = "https://github.com/${GIT_REPO}/releases/download/v40.0.1/${WHL_FILE};unpack=0"
 
-SRC_URI[sha256sum] = "0514c1ea7730ae9fbaf35f2ec57c7e69d6d500e139faa6390e16821d08767688"
-
 BBCLASSEXTEND = "native nativesdk"
 inherit python3-dir
 
@@ -29,12 +27,7 @@ FILES_${PN} += "\
 	${libdir}/${PYTHON_DIR}/site-packages/* \
 "
 
-do_fetch() {
-	curl -O -L -P ${DL_DIR} "https://github.com/${GIT_REPO}/releases/download/v40.0.1/${WHL_FILE}"
-}
-
 do_unpack() {
-    cd ${WORKDIR}
     rm -rf ${S}/site-packages
     mkdir -p ${S}/site-packages
     unzip -q ${S}/${WHL_FILE} -d ${S}/site-packages
@@ -42,6 +35,5 @@ do_unpack() {
 
 do_install() {
     install -d ${D}${libdir}/${PYTHON_DIR}/site-packages
-
     cp -r ${S}/site-packages/* ${D}${libdir}/${PYTHON_DIR}/site-packages/
 }
