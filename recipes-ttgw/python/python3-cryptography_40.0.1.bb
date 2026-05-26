@@ -33,14 +33,11 @@ do_fetch() {
 	curl -O -L -P ${DL_DIR} "https://github.com/${GIT_REPO}/releases/download/v40.0.1/${WHL_FILE}"
 }
 
-do_unpack_append(){
-    bb.build.exec_func('unpack_whl', d)
-}
-
-unpack_whl() {
+do_unpack() {
+    cd ${WORKDIR}
     rm -rf ${S}/site-packages
-    mkdir ${S}/site-packages
-    ${bindir}/env unzip ${S}/${WHL_FILE} -d ${S}/site-packages
+    mkdir -p ${S}/site-packages
+    unzip -q ${S}/${WHL_FILE} -d ${S}/site-packages
 }
 
 do_install() {
