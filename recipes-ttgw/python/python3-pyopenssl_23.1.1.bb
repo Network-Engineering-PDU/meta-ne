@@ -1,14 +1,14 @@
 SUMMARY = "Simple Python wrapper around the OpenSSL library"
 HOMEPAGE = "https://pyopenssl.org/"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://site-packages/pyOpenSSL-24.1.0.dist-info/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
+LIC_FILES_CHKSUM = "file://site-packages/pyOpenSSL-23.1.1.dist-info/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 DEPENDS += "openssl ${PYTHON_PN}-cryptography"
 
 SRC_URI += " \
-	https://files.pythonhosted.org/packages/54/a7/2104f674a5a6845b04c8ff01659becc6b8978ca410b82b94287e0b1e018b/pyOpenSSL-24.1.0-py3-none-any.whl\
+	https://files.pythonhosted.org/packages/b6/3b/fa9b3c4dfe6121fdf5fce2a375164cf6fc1ccc0b145bcc134e210052fbb0/pyOpenSSL-23.1.1-py3-none-any.whl\
 "
 
-SRC_URI[sha256sum] = "17ed5be5936449c5418d1cd269a1a9e9081bc54c17aed272b45856a3d3dc86ad"
+SRC_URI[sha256sum] = "9e0c526404a210df9d2b18cd33364beadb0dc858a739b885677bc65e105d4a4c"
 
 BBCLASSEXTEND = "native nativesdk"
 inherit python3-dir
@@ -35,7 +35,7 @@ do_unpack_append(){
 unpack_whl() {
     rm -rf ${S}/site-packages
     mkdir ${S}/site-packages
-    ${bindir}/env unzip ${S}/pyOpenSSL-24.1.0-py3-none-any.whl -d ${S}/site-packages
+    ${bindir}/env unzip ${S}/pyOpenSSL-23.1.1-py3-none-any.whl -d ${S}/site-packages
 }
 
 do_install() {
