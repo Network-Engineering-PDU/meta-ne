@@ -12,7 +12,7 @@ RDEPENDS:${PN} = "openssl python3-cffi libffi"
 
 S = "${WORKDIR}/cryptography-40.0.1"
 
-inherit python3-setuptools3
+inherit setuptools3
 
 BBCLASSEXTEND = "native nativesdk"
 PROVIDES += "python3-cryptography"
