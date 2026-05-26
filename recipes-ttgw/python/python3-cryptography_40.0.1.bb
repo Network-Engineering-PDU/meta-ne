@@ -21,7 +21,6 @@ PROVIDES += "python3-cryptography"
 export LDFLAGS = "-L${STAGING_LIBDIR}"
 export CFLAGS = "-I${STAGING_INCDIR}"
 export CPPFLAGS = "-I${STAGING_INCDIR}"
-export LD_LIBRARY_PATH = "${STAGING_LIBDIR}:${LD_LIBRARY_PATH}"
 export PKG_CONFIG_PATH = "${STAGING_LIBDIR}/pkgconfig"
 
 FILES:${PN} += "\
