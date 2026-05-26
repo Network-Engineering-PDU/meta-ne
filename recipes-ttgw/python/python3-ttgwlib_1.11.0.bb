@@ -3,8 +3,8 @@ SUMMARY = "Network-Engineering-PDU gateway library"
 HOMEPAGE = "https://github.com/Network-Engineering-PDU/gw-library/"
 LICENSE = "CLOSED"
 
-SRCBRANCH = "devel"
-SRCREV = "b1634a16ea51067fa86c29fc7eca4d64bb179955"
+SRCBRANCH = "main"
+SRCREV = "${AUTOREV}"
 SRC_URI = "git://github.com/Network-Engineering-PDU/gw-library.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
