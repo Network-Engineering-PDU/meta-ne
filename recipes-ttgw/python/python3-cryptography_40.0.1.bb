@@ -1,50 +1,29 @@
-DESCRIPTION = "High level compatibility layer for multiple asynchronous event loop implementations"
-HOMEPAGE = "https://pypi.org/project/anyio/"
-LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://site-packages/cryptography-40.0.1.dist-info/LICENSE;md5=bf405a8056a6647e7d077b0e7bc36aba"
+SUMMARY = "Provides cryptographic recipes and primitives"
+DESCRIPTION = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
+HOMEPAGE = "https://github.com/pyca/cryptography"
+LICENSE = "Apache-2.0 | BSD"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=8c7abffc8fbedfa67638ba3fe924b6ca"
 
-WHL_FILE = "cryptography-40.0.1-cp38-cp38-linux_armv7l.whl"
-GIT_NAME = "AhmedElghaly"
+SRC_URI = "https://files.pythonhosted.org/packages/source/c/cryptography/cryptography-40.0.1.tar.gz"
+SRC_URI[sha256sum] = "541adb322b59b8b4b51faf82d0751dc6eb96f0d5e1ad0c9eef4b0e7f6c6c2a82"
 
-SRC_URI = "https://github.com/Network-Engineering-PDU/cryptography-40.0.1/raw/main/${WHL_FILE};unpack=0"
+DEPENDS = "openssl libffi python3-native python3-cffi-native"
+RDEPENDS:${PN} = "openssl python3-cffi libffi"
 
-SRC_URI[sha256sum] = "0514c1ea7730ae9fbaf35f2ec57c7e69d6d500e139faa6390e16821d08767688"
+S = "${WORKDIR}/cryptography-40.0.1"
+
+inherit python3-setuptools3
 
 BBCLASSEXTEND = "native nativesdk"
-inherit python3-dir
-
 PROVIDES += "python3-cryptography"
 
-do_unpack[depends] += "unzip-native:do_populate_sysroot"
+# Ensure OpenSSL headers are available for cffi to generate complete bindings
+export LDFLAGS = "-L${STAGING_LIBDIR}"
+export CFLAGS = "-I${STAGING_INCDIR}"
+export CPPFLAGS = "-I${STAGING_INCDIR}"
+export LD_LIBRARY_PATH = "${STAGING_LIBDIR}:${LD_LIBRARY_PATH}"
+export PKG_CONFIG_PATH = "${STAGING_LIBDIR}/pkgconfig"
 
-DEPENDS += " openssl"
-RDEPENDS:${PN} = "\
-	python3-cffi\
-	openssl\
-"
-
-S = "${WORKDIR}"
-
-FILES_${PN} += "\
+FILES:${PN} += "\
 	${libdir}/${PYTHON_DIR}/site-packages/* \
 "
-
-do_fetch() {
-	curl -O -L -P ${DL_DIR} "https://github.com/Network-Engineering-PDU/cryptography-40.0.1/raw/main/${WHL_FILE}"
-}
-
-do_unpack_append(){
-    bb.build.exec_func('unpack_whl', d)
-}
-
-unpack_whl() {
-    rm -rf ${S}/site-packages
-    mkdir ${S}/site-packages
-    ${bindir}/env unzip ${S}/${WHL_FILE} -d ${S}/site-packages
-}
-
-do_install() {
-    install -d ${D}${libdir}/${PYTHON_DIR}/site-packages
-
-    cp -r ${S}/site-packages/* ${D}${libdir}/${PYTHON_DIR}/site-packages/
-}
