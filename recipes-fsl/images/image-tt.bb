@@ -99,7 +99,14 @@ systemd_disable_vt () {
     rm ${IMAGE_ROOTFS}${sysconfdir}/systemd/system/getty.target.wants/getty@tty*.service
 }
 
-IMAGE_PREPROCESS_COMMAND_append = " ${@ 'systemd_disable_vt;' if bb.utils.contains('DISTRO_FEATURES', 'systemd', True, False, d) and bb.utils.contains('USE_VT', '0', True, False, d) else ''} "
+# Remove cached gateway config so it regenerates on first boot with correct platform
+# This ensures ttgateway auto-detects the platform from /etc/ttversion instead of using
+# a cached config that might have been set to "desktop" during development
+remove_cached_gateway_config () {
+    rm -rf ${IMAGE_ROOTFS}/root/.tychetools
+}
+
+IMAGE_PREPROCESS_COMMAND_append = " ${@ 'systemd_disable_vt;' if bb.utils.contains('DISTRO_FEATURES', 'systemd', True, False, d) and bb.utils.contains('USE_VT', '0', True, False, d) else ''} remove_cached_gateway_config; "
 
 EXTRA_USERS_PARAMS = " \
 	useradd ${LINUX_USER}; \
