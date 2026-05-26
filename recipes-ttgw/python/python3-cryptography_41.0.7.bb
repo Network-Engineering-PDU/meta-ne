@@ -2,15 +2,15 @@ SUMMARY = "Provides cryptographic recipes and primitives"
 DESCRIPTION = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
 HOMEPAGE = "https://github.com/pyca/cryptography"
 LICENSE = "Apache-2.0 | BSD"
-LIC_FILES_CHKSUM = "file://site-packages/cryptography-40.0.1.dist-info/LICENSE;md5=bf405a8056a6647e7d077b0e7bc36aba"
+LIC_FILES_CHKSUM = "file://site-packages/cryptography-41.0.7.dist-info/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
 DEPENDS += "openssl"
 RDEPENDS:${PN} = "python3-cffi openssl"
 
-WHL_FILE = "cryptography-40.0.1-cp38-cp38-linux_armv7l.whl"
+WHL_FILE = "cryptography-41.0.7-cp38-cp38-linux_armv7l.whl"
 
-SRC_URI = "https://github.com/Network-Engineering-PDU/cryptography-40.0.1/raw/main/${WHL_FILE};unpack=0"
-SRC_URI[sha256sum] = "0514c1ea7730ae9fbaf35f2ec57c7e69d6d500e139faa6390e16821d08767688"
+SRC_URI = "https://dl.espressif.com/pypi/cryptography/${WHL_FILE};unpack=0"
+SRC_URI[sha256sum] = "6bb0e940a5cfc4baeb61325327af832ffd47feaec2e5c3cbd619491fd9061e26"
 
 BBCLASSEXTEND = "native nativesdk"
 inherit python3-dir
