@@ -1,7 +1,7 @@
 DESCRIPTION = "High level compatibility layer for multiple asynchronous event loop implementations"
 HOMEPAGE = "https://pypi.org/project/anyio/"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://site-packages/cryptography-40.0.1.dist-info/LICENSE;md5=bf405a8056a6647e7d077b0e7bc36aba"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=bf405a8056a6647e7d077b0e7bc36aba"
 
 WHL_FILE = "cryptography-40.0.1-cp38-cp38-linux_armv7l.whl"
 GIT_NAME = "AhmedElghaly"
@@ -12,3 +12,6 @@ SRC_URI[sha256sum] = "0514c1ea7730ae9fbaf35f2ec57c7e69d6d500e139faa6390e16821d08
 
 BBCLASSEXTEND = "native nativesdk"
 inherit python3-dir
+
+# Skip license checks for pre-built wheels
+INSANE_SKIP_${PN} = "license-checksum"
