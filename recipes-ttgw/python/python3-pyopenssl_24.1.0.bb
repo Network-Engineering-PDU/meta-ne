@@ -4,9 +4,9 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://site-packages/pyOpenSSL-24.1.0.dist-info/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 DEPENDS += "openssl ${PYTHON_PN}-cryptography"
 
-SRC_URI += " \
-	https://files.pythonhosted.org/packages/54/a7/2104f674a5a6845b04c8ff01659becc6b8978ca410b82b94287e0b1e018b/pyOpenSSL-24.1.0-py3-none-any.whl\
-"
+WHL_FILE = "pyOpenSSL-24.1.0-py3-none-any.whl"
+
+SRC_URI = "https://files.pythonhosted.org/packages/54/a7/2104f674a5a6845b04c8ff01659becc6b8978ca410b82b94287e0b1e018b/${WHL_FILE};unpack=0"
 
 SRC_URI[sha256sum] = "17ed5be5936449c5418d1cd269a1a9e9081bc54c17aed272b45856a3d3dc86ad"
 
@@ -33,7 +33,7 @@ do_unpack_append(){
 unpack_whl() {
     rm -rf ${S}/site-packages
     mkdir ${S}/site-packages
-    ${bindir}/env unzip ${S}/pyOpenSSL-23.1.1-py3-none-any.whl -d ${S}/site-packages
+    ${bindir}/env unzip ${S}/${WHL_FILE} -d ${S}/site-packages
 }
 
 do_install() {
