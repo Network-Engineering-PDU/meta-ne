@@ -4,7 +4,7 @@ HOMEPAGE = "https://github.com/Network-Engineering-PDU/gw-library/"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "devel"
-SRCREV = "68f3129cb92639e3ab7d523079dcbb358f5e8a8b"
+SRCREV = "${AUTOREV}"
 SRC_URI = "git://github.com/Network-Engineering-PDU/gw-library.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
