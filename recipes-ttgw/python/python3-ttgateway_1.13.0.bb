@@ -3,7 +3,7 @@ SUMMARY = "Network-Engineering-PDU gateway application"
 HOMEPAGE = "https://github.com/Network-Engineering-PDU/gw-app/"
 LICENSE = "CLOSED"
 
-SRCBRANCH = "main" #"devel"
+SRCBRANCH = "devel"
 SRCREV = "${AUTOREV}"
 SRC_URI = "git://github.com/Network-Engineering-PDU/gw-app.git;protocol=https;branch=${SRCBRANCH}"
 
