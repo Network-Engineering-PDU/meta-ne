@@ -9,11 +9,14 @@ SRC_URI = "git://github.com/Network-Engineering-PDU/ne-fw-api.git;protocol=https
 
 SRC_URI += " \
 	file://init \
+	file://ttne-ota.service \
+	file://ttne-ota-health.service \
+	file://ttne-ota-health-boot.service \
 "
 
 S = "${WORKDIR}/git"
 
-inherit setuptools3 update-rc.d
+inherit setuptools3 update-rc.d systemd
 
 DEPENDS += "${PYTHON_PN}-setuptools-scm-native"
 
@@ -23,13 +26,29 @@ RDEPENDS_${PN} = "\
     ${PYTHON_PN}-uvicorn \
     ${PYTHON_PN}-uvloop \
     ${PYTHON_PN}-python-multipart \
+    ${PYTHON_PN}-cryptography \
+    ${PYTHON_PN}-packaging \
     fw-om \
     fw-pmb \
+    u-boot-fw-utils \
 "
+
+SYSTEMD_SERVICE_${PN} = "ttne-ota.service ttne-ota-health.service ttne-ota-health-boot.service"
 
 do_install_append() {
     install -d ${D}${sysconfdir}/init.d
     install -m 755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/ttne
+
+    install -d ${D}${libdir}/ttne
+    install -m 755 ${S}/scripts/ota-boot-health.sh ${D}${libdir}/ttne/ota-boot-health.sh
+
+    install -d ${D}${nonarch_base_libdir}/systemd/system
+    install -m 644 ${WORKDIR}/ttne-ota.service ${D}${nonarch_base_libdir}/systemd/system/
+    install -m 644 ${WORKDIR}/ttne-ota-health.service ${D}${nonarch_base_libdir}/systemd/system/
+    install -m 644 ${WORKDIR}/ttne-ota-health-boot.service ${D}${nonarch_base_libdir}/systemd/system/
+
+    install -d ${D}${datadir}/doc/ttne
+    install -m 644 ${S}/docs/OTA.md ${D}${datadir}/doc/ttne/OTA.md
 }
 
 BBCLASSEXTEND = "native nativesdk"
