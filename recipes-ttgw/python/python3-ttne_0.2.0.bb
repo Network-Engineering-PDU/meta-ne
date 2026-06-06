@@ -31,6 +31,7 @@ RDEPENDS_${PN} = "\
     fw-om \
     fw-pmb \
     u-boot-fw-utils \
+    bash \
 "
 
 SYSTEMD_SERVICE_${PN} = "ttne-ota.service ttne-ota-health.service ttne-ota-health-boot.service"
