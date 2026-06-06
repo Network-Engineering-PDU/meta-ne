@@ -16,6 +16,11 @@ SRC_URI += " \
 
 S = "${WORKDIR}/git"
 
+# If the git checkout in ${WORKDIR}/git lacks a valid HEAD, the reproducible
+# build helper may fail when attempting to derive SOURCE_DATE_EPOCH from git.
+# Use a fixed SOURCE_DATE_EPOCH as a safe fallback for this recipe.
+SOURCE_DATE_EPOCH = "0"
+
 inherit setuptools3 update-rc.d systemd
 
 DEPENDS += "${PYTHON_PN}-setuptools-scm-native"
