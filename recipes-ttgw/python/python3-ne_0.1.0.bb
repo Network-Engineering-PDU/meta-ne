@@ -19,6 +19,8 @@ RDEPENDS_${PN} = "\
     python3-requests\
     python3-djangorestframework-simplejwt\
     python3-bleak\
+    bluez5\
+    dbus\
 "
 
 FILES_${PN} = " \
