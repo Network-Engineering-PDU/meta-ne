@@ -18,6 +18,7 @@ RDEPENDS_${PN} = "\
     python3-djangorestframework\
     python3-requests\
     python3-djangorestframework-simplejwt\
+    python3-bleak\
 "
 
 FILES_${PN} = " \
