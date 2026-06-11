@@ -1,3 +1,4 @@
+# -*- mode: Conf; -*-
 SUMMARY = "Network-Engineering-PDU Bluetooth configuration server application"
 HOMEPAGE = "https://github.com/Network-Engineering-PDU/ble_config_server/"
 LICENSE = "CLOSED"

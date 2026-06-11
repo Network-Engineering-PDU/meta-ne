@@ -1,0 +1,16 @@
+[Unit]
+Description=NET-POWER OTA firmware update daemon
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+Environment=HOME=/home/root
+PIDFile=/home/root/.ne/ota/ttne-ota.pid
+ExecStart=/usr/bin/ttne-ota start
+ExecStop=/usr/bin/ttne-ota stop
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

@@ -6,7 +6,6 @@ SRCBRANCH = "devel"
 SRCREV = "5773a4fb267deb86492be19b295e3a7868cb0679"
 SRC_URI = "git://github.com/Network-Engineering-PDU/diagnosis.git;protocol=https;branch=${SRCBRANCH}"
 
-
 S = "${WORKDIR}/git"
 
 inherit setuptools3 update-rc.d

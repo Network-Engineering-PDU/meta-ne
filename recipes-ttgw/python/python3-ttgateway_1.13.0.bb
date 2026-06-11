@@ -3,7 +3,7 @@ SUMMARY = "Network-Engineering-PDU gateway application"
 HOMEPAGE = "https://github.com/Network-Engineering-PDU/gw-app/"
 LICENSE = "CLOSED"
 
-SRCBRANCH = "devel"
+SRCBRANCH = "main"
 SRCREV = "${AUTOREV}"
 SRC_URI = "git://github.com/Network-Engineering-PDU/gw-app.git;protocol=https;branch=${SRCBRANCH}"
 
@@ -39,13 +39,13 @@ do_install_append() {
     install -d ${D}${sysconfdir}/init.d
     install -m 755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/ttgateway
 
-	install -d ${D}${sysconfdir}/tychetools
-	install -d ${D}${sysconfdir}/tychetools/certs
-	install -m 600 ${WORKDIR}/ca.crt ${D}${sysconfdir}/tychetools/certs/ca.crt
-	install -m 600 ${WORKDIR}/client.crt ${D}${sysconfdir}/tychetools/certs/client.crt
-	install -m 600 ${WORKDIR}/client.key ${D}${sysconfdir}/tychetools/certs/client.key
-	install -m 600 ${WORKDIR}/server.crt ${D}${sysconfdir}/tychetools/certs/server.crt
-	install -m 600 ${WORKDIR}/server.key ${D}${sysconfdir}/tychetools/certs/server.key
+	install -d ${D}${sysconfdir}/Network-Engineering-PDU
+	install -d ${D}${sysconfdir}/Network-Engineering-PDU/certs
+	install -m 600 ${WORKDIR}/ca.crt ${D}${sysconfdir}/Network-Engineering-PDU/certs/ca.crt
+	install -m 600 ${WORKDIR}/client.crt ${D}${sysconfdir}/Network-Engineering-PDU/certs/client.crt
+	install -m 600 ${WORKDIR}/client.key ${D}${sysconfdir}/Network-Engineering-PDU/certs/client.key
+	install -m 600 ${WORKDIR}/server.crt ${D}${sysconfdir}/Network-Engineering-PDU/certs/server.crt
+	install -m 600 ${WORKDIR}/server.key ${D}${sysconfdir}/Network-Engineering-PDU/certs/server.key
 }
 
 BBCLASSEXTEND = "native nativesdk"

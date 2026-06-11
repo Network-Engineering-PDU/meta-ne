@@ -1,11 +1,11 @@
 # -*- mode: Conf; -*-
 SUMMARY = "NE Django web server for PDUs"
-HOMEPAGE = "https://bitbucket.org/tychetools/ne/"
+HOMEPAGE = "https://github.com/Network-Engineering-PDU/ne/"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "main"
-SRCREV = "1fc64c0fc972e818964a30847d2f0ae640fcb4f4"
-SRC_URI = "git://bitbucket.org/tychetools/ne.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCREV = "${AUTOREV}"
+SRC_URI = "git://github.com/Network-Engineering-PDU/ne.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += " \
 	file://env \
@@ -18,6 +18,9 @@ RDEPENDS_${PN} = "\
     python3-djangorestframework\
     python3-requests\
     python3-djangorestframework-simplejwt\
+    python3-dbus\
+    bluez5\
+    dbus\
 "
 
 FILES_${PN} = " \

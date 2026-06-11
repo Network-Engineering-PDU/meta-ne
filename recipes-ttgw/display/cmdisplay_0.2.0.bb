@@ -1,5 +1,4 @@
 # -*- mode: Conf; -*-
-# -*- mode: Conf; -*-
 SUMMARY = "Network-Engineering-PDU NE display for PDUs"
 HOMEPAGE = "https://github.com/Network-Engineering-PDU/ttne-display/"
 LICENSE = "CLOSED"
@@ -51,5 +50,3 @@ do_install_append() {
 
 INITSCRIPT_NAME = "cmdisplay"
 INITSCRIPT_PARAMS = "defaults 40"
-
-

@@ -6,7 +6,7 @@ RDEPENDS_${PN} += "bash"
 inherit autotools pkgconfig update-rc.d
 
 SRCBRANCH = "main"
-SRCREV = "${AUTOREV}"
+SRCREV = "dd666f587adb8434ca66dfc3d3ba537f7ee21f20"
 SRC_URI = "git://github.com/Network-Engineering-PDU/modbus_server.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
