@@ -11,6 +11,7 @@ SRC_URI += "\
     file://findcjson.patch\
     file://open-selected-sensor-live.patch\
     file://live-sensor-refresh-no-date.patch\
+    file://nonblocking-splash-login.patch\
 	file://init \
 "
 
