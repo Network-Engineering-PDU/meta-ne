@@ -1,5 +1,5 @@
 diff --git a/src/scr_sensors.c b/src/scr_sensors.c
-index 8fdf807..3d4040b 100644
+index 8fdf807..4132ed8 100644
 --- a/src/scr_sensors.c
 +++ b/src/scr_sensors.c
 @@ -1,4 +1,5 @@
@@ -8,7 +8,28 @@ index 8fdf807..3d4040b 100644
  
  #include "lvgl/lvgl.h"
  
-@@ -135,6 +136,27 @@ static void finish_selection_and_return(void)
+@@ -75,9 +76,9 @@ static void cancel_loader_cb(lv_event_t* e)
+ 		LV_LOG_USER("CANCEL");
+ 		if (selection_scr != NULL) {
+ 			controller_post_ble_scan_stop();
++			lv_scr_load(current_main_scr);
+ 			lv_obj_del(selection_scr);
+ 			selection_scr = NULL;
+-			lv_scr_load(current_main_scr);
+ 			return;
+ 		}
+ 		finish_scan_and_show();
+@@ -128,13 +129,36 @@ static void finish_selection_and_return(void)
+ 	controller_post_ble_scan_stop();
+ 	controller_get_sensors();
+ 	if (selection_scr != NULL) {
++		lv_scr_load(current_main_scr);
+ 		lv_obj_del(selection_scr);
+ 		selection_scr = NULL;
++	} else if (current_main_scr != NULL) {
++		lv_scr_load(current_main_scr);
+ 	}
+-	lv_scr_load(current_main_scr);
  	update_sensors();
  }
  
@@ -36,7 +57,7 @@ index 8fdf807..3d4040b 100644
  static void btn_found_sensor_cb(lv_event_t* e)
  {
  	lv_event_code_t code = lv_event_get_code(e);
-@@ -145,11 +167,17 @@ static void btn_found_sensor_cb(lv_event_t* e)
+@@ -145,11 +169,17 @@ static void btn_found_sensor_cb(lv_event_t* e)
  		const models_discovered_sensor_t* devices =
  				models_get_discovered(&len);
  		if (sensor_idx >= 0 && sensor_idx < len) {
