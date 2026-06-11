@@ -9,6 +9,7 @@ SRC_URI = "git://github.com/Network-Engineering-PDU/ne-fw-api.git;protocol=https
 
 SRC_URI += " \
 	file://init \
+	file://persist-bluetooth-power-state.patch \
 	file://ttne-ota.service \
 	file://ttne-ota-health.service \
 	file://ttne-ota-health-boot.service \

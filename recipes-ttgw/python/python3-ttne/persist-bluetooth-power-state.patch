@@ -1,0 +1,57 @@
+diff --git a/ttne/app/main.py b/ttne/app/main.py
+index 4eb0625..8c4d6e6 100644
+--- a/ttne/app/main.py
++++ b/ttne/app/main.py
+@@ -8,6 +8,7 @@ from ttne.app import inputs
+ from ttne.app import outputs
+ from ttne.app import settings
+ from ttne.app import network
++from ttne.app.settings import functions as settings_functions
+ 
+ from ttne.om import Om
+ from ttne.pmb import Pmb
+@@ -31,6 +32,12 @@ app.add_middleware(
+     allow_headers=["*"],
+ )
+ 
++
++@app.on_event("startup")
++async def init_persistent_settings():
++    await settings_functions.init_persistent_settings()
++
++
+ app.include_router(inputs.router)
+ app.include_router(outputs.router)
+ app.include_router(settings.router)
+diff --git a/ttne/app/settings/functions.py b/ttne/app/settings/functions.py
+index 9ca09bc..e1f32f6 100644
+--- a/ttne/app/settings/functions.py
++++ b/ttne/app/settings/functions.py
+@@ -343,6 +343,9 @@ async def set_bluetooth_settings(settings):
+     retval, output = await _bluetoothctl(*commands)
+     if retval != 0:
+         logger.warning(f"Bluetooth settings failed: {output}")
++        return
++    if settings.powered is not None:
++        _write_bluetooth_config(settings.powered)
+ 
+ 
+ async def start_bluetooth():
+@@ -350,6 +353,8 @@ async def start_bluetooth():
+     retval, output = await _bluetoothctl("power on")
+     if retval != 0:
+         logger.warning(f"Bluetooth start failed: {output}")
++        return
++    _write_bluetooth_config(True)
+ 
+ 
+ async def stop_bluetooth():
+@@ -357,6 +362,8 @@ async def stop_bluetooth():
+     retval, output = await _bluetoothctl("power off")
+     if retval != 0:
+         logger.warning(f"Bluetooth stop failed: {output}")
++        return
++    _write_bluetooth_config(False)
+ 
+ 
+ async def start_bluetooth_scan():
