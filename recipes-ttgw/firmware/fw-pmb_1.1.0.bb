@@ -1,17 +1,17 @@
 # -*- mode: Conf; -*-
 SUMMARY = "NE power module base firmware binaries"
-HOMEPAGE = "https://github.com/Network-Engineering-PDU/fw-pmb-pic/"
+HOMEPAGE = "https://bitbucket.org/tychetools/fw-pmb-pic/"
 LICENSE = "CLOSED"
 
 ZIP_FILE = "fw-pmb_1.1.0_pmb_boardv2.hex"
 GIT_REPO = "fw-pmb-pic"
 
-SRC_URI = "https://github.com/Network-Engineering-PDU/${GIT_REPO}/raw/main/${ZIP_FILE};unpack=0"
+SRC_URI = "https://api.bitbucket.org/2.0/repositories/tychetools/${GIT_REPO}/downloads/${ZIP_FILE};unpack=0"
 
 S = "${WORKDIR}"
 
 do_fetch() {
-	curl -L -o ${DL_DIR}/${ZIP_FILE} "https://github.com/Network-Engineering-PDU/${GIT_REPO}/raw/main/${ZIP_FILE}"
+	curl -O -L -P ${DL_DIR} --user "${BITBUCKET_USER}:${BITBUCKET_PASS}" "https://api.bitbucket.org/2.0/repositories/tychetools/${GIT_REPO}/downloads/${ZIP_FILE}"
 }
 
 do_install() {
