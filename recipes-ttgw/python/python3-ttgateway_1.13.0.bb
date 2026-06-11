@@ -1,11 +1,11 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Tychetools gateway application"
-HOMEPAGE = "https://bitbucket.org/tychetools/gw-app/"
+SUMMARY = "Network-Engineering-PDU gateway application"
+HOMEPAGE = "https://github.com/Network-Engineering-PDU/gw-app/"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "devel"
-SRCREV = "109fca0ec42a774ada0e9c234f8ac744ebb93b5d"
-SRC_URI = "git://bitbucket.org/tychetools/gw-app.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCREV = "${AUTOREV}"
+SRC_URI = "git://github.com/Network-Engineering-PDU/gw-app.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += " \
 	file://init \

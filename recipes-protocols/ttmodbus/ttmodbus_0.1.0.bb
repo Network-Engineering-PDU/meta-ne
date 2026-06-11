@@ -1,13 +1,13 @@
 # -*- mode: Conf; -*-
-SUMMARY = "Tychetools Modbus server"
+SUMMARY = "Network-Engineering-PDU Modbus server"
 LICENSE = "CLOSED"
 
 RDEPENDS_${PN} += "bash"
 inherit autotools pkgconfig update-rc.d
 
-SRCBRANCH = "master"
-SRCREV = "603832d6d3ee77de79f542f776215de4f340c85f"
-SRC_URI = "git://bitbucket.org/tychetools/modbus_server.git;protocol=ssh;branch=${SRCBRANCH}"
+SRCBRANCH = "main"
+SRCREV = "${AUTOREV}"
+SRC_URI = "git://github.com/Network-Engineering-PDU/modbus_server.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
 

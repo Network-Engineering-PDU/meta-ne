@@ -54,6 +54,7 @@ CORE_IMAGE_EXTRA_INSTALL += " \
 	python3-ruamel-yaml-clib \
 	python3-drf-yasg \
 	python3-inflection \
+	python3-dbus \
 	networkmanager \
 	modemmanager \
 	ttautossh \
