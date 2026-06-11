@@ -10,6 +10,7 @@ SRC_URI = "git://github.com/Network-Engineering-PDU/ttne-display.git;protocol=ht
 SRC_URI += "\
     file://findcjson.patch\
     file://open-selected-sensor-live.patch\
+    file://live-sensor-refresh-no-date.patch\
 	file://init \
 "
 
@@ -51,4 +52,3 @@ do_install_append() {
 
 INITSCRIPT_NAME = "cmdisplay"
 INITSCRIPT_PARAMS = "defaults 40"
-
