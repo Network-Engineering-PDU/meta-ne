@@ -5,7 +5,7 @@ LICENSE = "CLOSED"
 RDEPENDS_${PN} += "bash"
 
 SRCBRANCH = "main"
-SRCREV = "${AUTOREV}"
+SRCREV = "f0c256358f7bfe979d2b46e6619a44187de6d5b7"
 SRC_URI = "git://github.com/Network-Engineering-PDU/usb_autorun.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"

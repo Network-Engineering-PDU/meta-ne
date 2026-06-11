@@ -6,7 +6,7 @@ RDEPENDS_${PN} += "bash"
 inherit update-rc.d
 
 SRCBRANCH = "main"
-SRCREV = "${AUTOREV}"
+SRCREV = "19a34a2c027febe0342c8e01d07c9dd4a9eaaf15"
 SRC_URI = "git://github.com/Network-Engineering-PDU/heimdall.git;protocol=https;branch=${SRCBRANCH}"
 
 SRC_URI += " \
