@@ -1,0 +1,31 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          ttne-ota
+# Required-Start:    $network ttne
+# Required-Stop:     $network ttne
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: NET-POWER OTA update daemon
+### END INIT INFO
+
+case "$1" in
+start)
+	echo "Start ttne-ota..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ttne-ota start"
+;;
+
+stop)
+	echo "Stop ttne-ota..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ttne-ota stop"
+;;
+
+restart)
+	echo "Restart ttne-ota..."
+	/bin/bash -c "export HOME=/home/root; /usr/bin/ttne-ota stop; /usr/bin/ttne-ota start"
+;;
+
+*)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+

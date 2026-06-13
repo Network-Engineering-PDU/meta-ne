@@ -9,6 +9,7 @@ SRC_URI = "git://github.com/Network-Engineering-PDU/ne-fw-api.git;protocol=https
 
 SRC_URI += " \
 	file://init \
+	file://ota-init \
 	file://ttne-ota.service \
 	file://ttne-ota-health.service \
 	file://ttne-ota-health-boot.service \
@@ -44,6 +45,7 @@ SYSTEMD_SERVICE_${PN} = "ttne-ota.service ttne-ota-health.service ttne-ota-healt
 do_install_append() {
     install -d ${D}${sysconfdir}/init.d
     install -m 755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/ttne
+    install -m 755 ${WORKDIR}/ota-init ${D}${sysconfdir}/init.d/ttne-ota
 
     install -d ${D}${libdir}/ttne
     install -m 755 ${S}/scripts/ota-boot-health.sh ${D}${libdir}/ttne/ota-boot-health.sh
@@ -59,5 +61,13 @@ do_install_append() {
 
 BBCLASSEXTEND = "native nativesdk"
 
-INITSCRIPT_NAME = "ttne"
-INITSCRIPT_PARAMS = "defaults 75"
+PACKAGES =+ "${PN}-ota"
+
+FILES_${PN}-ota = "${sysconfdir}/init.d/ttne-ota"
+RDEPENDS_${PN}-ota = "${PN}"
+
+INITSCRIPT_PACKAGES = "${PN} ${PN}-ota"
+INITSCRIPT_NAME_${PN} = "ttne"
+INITSCRIPT_PARAMS_${PN} = "defaults 75"
+INITSCRIPT_NAME_${PN}-ota = "ttne-ota"
+INITSCRIPT_PARAMS_${PN}-ota = "defaults 90"
