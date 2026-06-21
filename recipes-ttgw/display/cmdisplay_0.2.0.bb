@@ -18,7 +18,10 @@ inherit cmake pkgconfig update-rc.d
 
 EXTRA_OECMAKE = "\
     -DASSET_PATH="\"A:/usr/share/cmdisplay/assets/\""\
+    -DCMAKE_BUILD_TYPE=Release \
 "
+
+CFLAGS += " -DNDEBUG"
 #-DCJSON_INCLUDE_DIR="/include"
 #-DCJSON_LIBRARIES="/lib"
 #-DCMAKE_DISABLE_FIND_PACKAGE_cJSON="TRUE"
