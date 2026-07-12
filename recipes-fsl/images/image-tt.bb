@@ -44,6 +44,7 @@ CORE_IMAGE_EXTRA_INSTALL += " \
 	tzdata \
 	sqlite3 \
 	libsqlite3 \
+	swupdate \
 	python3-spidev \
 	python3-numpy \
 	python3-pillow \
