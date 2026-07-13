@@ -23,6 +23,13 @@
 [ -f /etc/default/rcS ] && . /etc/default/rcS
 
 [ "$UTC" = "yes" ] && tz="--utc --noadjfile" || tz="--localtime"
+
+# Minimum UTC date baked into this image. Use it only when the RTC is older so
+# a valid clock is never moved backwards. This keeps TLS certificate validation
+# usable on systems that boot without NTP connectivity.
+FALLBACK_DATE=20260713
+FALLBACK_DATETIME="2026-07-13 00:00:00"
+
 case "$1" in
         start)
                 if [ "$VERBOSE" != no ]
@@ -38,6 +45,20 @@ case "$1" in
 	                   hwclock $tz --hctosys
 			else
 			   TZ="$TZ" hwclock $tz --hctosys
+			fi
+		fi
+
+		current_date=`date -u +%Y%m%d 2>/dev/null`
+		case "$current_date" in
+			''|*[!0-9]*) current_date=0 ;;
+		esac
+		if [ "$current_date" -lt "$FALLBACK_DATE" ]
+		then
+			echo "RTC date is older than the image fallback; setting UTC date to 2026-07-13."
+			date -u -s "$FALLBACK_DATETIME"
+			if [ "$HWCLOCKACCESS" != no ]
+			then
+				hwclock --utc --noadjfile --systohc
 			fi
 		fi
 
