@@ -4,7 +4,7 @@ HOMEPAGE = "https://github.com/Network-Engineering-PDU/snmp-client/"
 LICENSE = "CLOSED"
 
 SRCBRANCH = "main"
-SRCREV = "a8fefd4a8d0d6f10f6d3a263905be55bbeac98e9"
+SRCREV = "cc61c916f6b16ba15363e720742ba24c75a04db2"
 SRC_URI = "git://github.com/Network-Engineering-PDU/snmp-client.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
@@ -34,4 +34,3 @@ FILES_${PN} += " \
 DEPENDS += "${PYTHON_PN}-setuptools-scm-native"
 
 BBCLASSEXTEND = "native nativesdk"
-
