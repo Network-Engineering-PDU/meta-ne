@@ -2,6 +2,7 @@
 SUMMARY = "Network-Engineering-PDU SNMP utilities"
 HOMEPAGE = "https://github.com/Network-Engineering-PDU/snmp-client/"
 LICENSE = "CLOSED"
+PR = "r1"
 
 SRCBRANCH = "main"
 SRCREV = "cc61c916f6b16ba15363e720742ba24c75a04db2"
