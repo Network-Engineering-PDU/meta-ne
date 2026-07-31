@@ -5,7 +5,7 @@ LICENSE = "CLOSED"
 PR = "r1"
 
 SRCBRANCH = "main"
-SRCREV = "cc61c916f6b16ba15363e720742ba24c75a04db2"
+SRCREV = "${AUTOREV}"
 SRC_URI = "git://github.com/Network-Engineering-PDU/snmp-client.git;protocol=https;branch=${SRCBRANCH}"
 
 S = "${WORKDIR}/git"
