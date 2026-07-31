@@ -16,8 +16,16 @@ PATH=/sbin:/bin:/usr/bin:/usr/sbin
 
 DAEMON=/usr/sbin/chronyd
 PIDFILE=/var/run/chrony/chronyd.pid
+STATE_DIR=/home/root/.ne
+STATE_CONFIG=$STATE_DIR/chrony.conf
+DISABLED_FILE=$STATE_DIR/ntp_disabled
+CONFIG_FILE=/etc/chrony.conf
 
-test -x $DAEMON -a -r /etc/chrony.conf || exit 0
+if test -r "$STATE_CONFIG"; then
+	CONFIG_FILE=$STATE_CONFIG
+fi
+
+test -x "$DAEMON" -a -r "$CONFIG_FILE" || exit 0
 
 # Source function library.
 . /etc/init.d/functions
@@ -25,7 +33,11 @@ test -x $DAEMON -a -r /etc/chrony.conf || exit 0
 # Functions to do individual actions
 startdaemon(){
 	echo -n "Starting chronyd: "
-	start-stop-daemon --start --oknodo --pidfile $PIDFILE --startas $DAEMON -- "$@"
+	if test -e "$DISABLED_FILE"; then
+		echo "disabled"
+		return 0
+	fi
+	start-stop-daemon --start --oknodo --pidfile $PIDFILE --startas $DAEMON -- -f "$CONFIG_FILE" "$@"
 	echo "done"
 }
 stopdaemon(){
