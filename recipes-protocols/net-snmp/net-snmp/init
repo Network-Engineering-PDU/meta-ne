@@ -6,12 +6,10 @@
 # Defaults
 export MIBDIRS=/usr/share/snmp/mibs
 SNMPDRUN=yes
-DISABLEOPTS='-I -usmConf
-	-I -iquery
+DISABLEOPTS='-I -iquery
 	-I -snmpEngine
 	-I -snmpMPDStats
 	-I -usmStats
-	-I -usmUser
 	-I -sysORTable
 	-I -snmp_mib
 	-I -vacm_vars
