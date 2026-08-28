@@ -60,6 +60,7 @@ CORE_IMAGE_EXTRA_INSTALL += " \
 	modemmanager \
 	ttautossh \
 	ttsetup \
+	eth2-phy-watchdog \
 	socat \
 	ufw \
 	bash-completion \
