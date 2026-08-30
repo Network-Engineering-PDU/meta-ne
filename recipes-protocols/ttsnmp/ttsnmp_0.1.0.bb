@@ -14,12 +14,10 @@ inherit setuptools3
 
 do_configure_append() {
 	sed -e 's@/path/to/executable/ttsnmpd_helper@/usr/bin/ttsnmpd_helper@' \
-	-i ${WORKDIR}/git/snmpd.conf
-	cp ${WORKDIR}/git/snmpd.conf ${WORKDIR}/snmpd.conf
+	${S}/snmpd.conf > ${WORKDIR}/snmpd.conf
 
 	sed -e 's@/path/to/executable/nesnmpd_helper@/usr/bin/nesnmpd_helper@' \
-	-i ${WORKDIR}/git/ne_snmpd.conf
-	cp ${WORKDIR}/git/ne_snmpd.conf ${WORKDIR}/ne_snmpd.conf
+	${S}/ne_snmpd.conf > ${WORKDIR}/ne_snmpd.conf
 }
 
 do_install_append () {
