@@ -26,9 +26,13 @@ CFLAGS += " -DNDEBUG"
 #-DCJSON_LIBRARIES="/lib"
 #-DCMAKE_DISABLE_FIND_PACKAGE_cJSON="TRUE"
 
-DEPENDS += "cjson curl"
+DEPENDS += "cjson curl freetype"
 
+# Fonts for the touchscreen languages: DejaVu Sans covers Arabic, WenQuanYi
+# Zen Hei Chinese. Latin text uses Montserrat, shipped in the app's assets.
 RDEPENDS_${PN} = "\
+    ttf-dejavu-sans \
+    ttf-wqy-zenhei \
 "
 
 
