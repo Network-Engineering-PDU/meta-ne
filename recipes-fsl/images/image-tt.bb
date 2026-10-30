@@ -94,6 +94,7 @@ CORE_IMAGE_EXTRA_INSTALL += " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'usbautorun', 'usbautorun', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'ttdiagnosis', 'python3-ttdiagnosis', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'necm', 'python3-ttne', '', d)} \
+	${@bb.utils.contains('DISTRO_FEATURES', 'necm', 'python3-ttne-ota', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'necm', 'python3-ne', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'necm', 'nginx', '', d)} \
 "
